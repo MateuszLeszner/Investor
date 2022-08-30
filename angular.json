@@ -107,5 +107,7 @@
       }
     }
   },
-  "defaultProject": "inwestycje.web"
+  "cli": {
+    "analytics": false
+  }
 }
