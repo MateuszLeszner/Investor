@@ -1,3 +1,23 @@
-<ul>
-  <li *ngFor="let wallet of wallets$ | async">{{wallet.name}} ({{wallet.id}})</li>
+<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+  <span>Portfele</span>
+  <button *ngIf="!isAddFieldVisible" class="btn btn-light" aria-label="Dodaj nowy portfel" (click)="showAddField()">
+    <i class="bi bi-plus-lg"></i>
+  </button>
+  <div *ngIf="isAddFieldVisible" class="input-group ms-3">
+    <input type="text"
+           class="form-control input-group-item"
+           (keydown)="inputKeyDown($event)"
+           #newWalletField/>
+    <button class="btn btn-outline-success input-group-item" (click)="addWallet(newWalletField.value)">
+      <i class="bi bi-check2"></i>
+    </button>
+    <button class="btn btn-outline-danger input-group-item" (click)="cancelAddingWallet()">
+      <i class="bi bi-x"></i>
+    </button>
+  </div>
+</h6>
+<ul class="nav flex-column mb-2">
+  <li class="nav-item" *ngFor="let wallet of walletsService.wallets$ | async">
+    <app-wallets-list-item [wallet]="wallet"></app-wallets-list-item>
+  </li>
 </ul>

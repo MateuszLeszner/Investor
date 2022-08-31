@@ -5,7 +5,7 @@ export class AppDB extends Dexie {
   wallets!: Table<Wallet, number>;
 
   constructor() {
-    super('ngdexieliveQuery');
+    super('inwestycje-db');
     this.version(1).stores({
       wallets: '++id',
     });
