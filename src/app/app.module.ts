@@ -7,6 +7,8 @@ import { WalletsListComponent } from './components/wallets-list/wallets-list.com
 import { HeaderComponent } from './components/_shared/header/header.component';
 import { SidebarComponent } from './components/_shared/sidebar/sidebar.component';
 import { WalletsListItemComponent } from './components/wallets-list/wallets-list-item/wallets-list-item.component';
+import { AppRoutingModule } from './app-routing.module';
+import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { WalletsListItemComponent } from './components/wallets-list/wallets-list
     WalletsListComponent,
     HeaderComponent,
     SidebarComponent,
-    WalletsListItemComponent
+    WalletsListItemComponent,
+    WalletDetailsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
