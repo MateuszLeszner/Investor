@@ -1,6 +1,6 @@
 <div *ngIf="isEditMode" class="input-group">
   <input type="number" class="form-control input-group-item" [value]="value" (keydown)="inputFieldKeyDown($event)" #inputField />
-  <span class="input-group-text">{{currencySymbol}}</span>
+  <span class="input-group-text">{{wallet.currency | currencySymbol}}</span>
   <button class="btn btn-outline-success input-group-item" (click)="saveClick()">
     <i class="bi bi-check2"></i>
   </button>
@@ -11,7 +11,7 @@
 <div *ngIf="!isEditMode" class="d-flex flex-row px-2">
   <div class="d-block align-self-center me-2">
     <span>
-      {{value | currency : walletCurrency : 'symbol-narrow'}}
+      {{value | currency : wallet.currency : 'symbol-narrow'}}
     </span>
   </div>
   <div>

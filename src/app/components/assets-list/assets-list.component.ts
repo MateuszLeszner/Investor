@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
+import { Wallet } from 'src/app/models/wallet';
 import { AssetsService } from 'src/app/services/assets.service';
 
 @Component({
@@ -9,10 +10,7 @@ import { AssetsService } from 'src/app/services/assets.service';
 })
 export class AssetsListComponent implements OnInit {
   @Input()
-  assets?: Asset[];
-
-  @Input()
-  walletCurrency!: string;
+  wallet!: Wallet;
 
   constructor(
   ) { }
@@ -21,15 +19,15 @@ export class AssetsListComponent implements OnInit {
   }
 
   public getTotalMoneySpent(): number | undefined {
-    return this.assets?.map(asset => asset.moneySpent).reduce((a, b) => Number(a) + Number(b), 0);
+    return this.wallet.assets?.map(asset => asset.moneySpent).reduce((a, b) => Number(a) + Number(b), 0);
   }
 
   public getTotalCurrentValue(): number | undefined {
-    return this.assets?.map(asset => Asset.getCurrentTotalValue(asset)).reduce((a, b) => Number(a) + Number(b), 0);
+    return this.wallet.assets?.map(asset => Asset.getCurrentTotalValue(asset)).reduce((a, b) => Number(a) + Number(b), 0);
   }
 
   public getTotalProfit(): number | undefined {
-    return this.assets?.map(asset => Asset.getProfit(asset)).reduce((a, b) => Number(a) + Number(b), 0);
+    return this.wallet.assets?.map(asset => Asset.getProfit(asset)).reduce((a, b) => Number(a) + Number(b), 0);
   }
 
   public getTotalPercentageProfit(): number | undefined {

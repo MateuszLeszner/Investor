@@ -1,5 +1,6 @@
 import { getCurrencySymbol } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Wallet } from 'src/app/models/wallet';
 
 @Component({
   selector: 'app-currency-field',
@@ -11,20 +12,18 @@ export class CurrencyFieldComponent implements OnInit {
   public value!: number;
 
   @Input()
-  public walletCurrency!: string;
+  public wallet!: Wallet;
 
   @Output()
   public save = new EventEmitter<number>();
 
   @ViewChild('inputField') inputField: ElementRef | undefined;
 
-  public currencySymbol?: string;
   public isEditMode: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.currencySymbol = getCurrencySymbol(this.walletCurrency, 'narrow');
   }
 
   public enableEditMode(): void {

@@ -19,6 +19,7 @@ import { registerLocaleData } from '@angular/common';
 import { NumberFieldComponent } from './components/basic/number-field/number-field.component';
 import { CurrencyFieldComponent } from './components/basic/currency-field/currency-field.component';
 import { TextFieldComponent } from './components/basic/text-field/text-field.component';
+import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
 
 registerLocaleData(localePL);
 
@@ -34,6 +35,7 @@ registerLocaleData(localePL);
     AssetsListItemComponent,
     AssetCurrentTotalValuePipe,
     AssetProfitPipe,
+    CurrencySymbolPipe,
     NumberFieldComponent,
     CurrencyFieldComponent,
     TextFieldComponent

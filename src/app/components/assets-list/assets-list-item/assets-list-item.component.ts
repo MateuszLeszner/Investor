@@ -13,7 +13,7 @@ export class AssetsListItemComponent implements OnInit {
   asset!: Asset;
 
   @Input()
-  walletCurrency!: string;
+  wallet!: Wallet;
 
   constructor(
     private assetsService: AssetsService
@@ -24,9 +24,5 @@ export class AssetsListItemComponent implements OnInit {
 
   updateAsset(asset: Asset): void {
     this.assetsService.update(asset);
-  }
-
-  toNumber(value: string | number): number {
-    return Number(value);
   }
 }
