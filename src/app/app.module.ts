@@ -20,6 +20,7 @@ import { NumberFieldComponent } from './components/basic/number-field/number-fie
 import { CurrencyFieldComponent } from './components/basic/currency-field/currency-field.component';
 import { TextFieldComponent } from './components/basic/text-field/text-field.component';
 import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
+import { AssetPercentageInWalletPipe } from './pipes/asset-percentage-in-wallet.pipe';
 
 registerLocaleData(localePL);
 
@@ -34,6 +35,7 @@ registerLocaleData(localePL);
     AssetsListComponent,
     AssetsListItemComponent,
     AssetCurrentTotalValuePipe,
+    AssetPercentageInWalletPipe,
     AssetProfitPipe,
     CurrencySymbolPipe,
     NumberFieldComponent,

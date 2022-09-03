@@ -12,4 +12,8 @@ export class Wallet extends DbEntity {
         super();
         this.name = name;
     }
+
+    public static getCurrentTotalValue(wallet: Wallet): number {
+        return wallet.assets.map(asset => Asset.getCurrentTotalValue(asset)).reduce((a, b) => a + b);
+    }
 }
