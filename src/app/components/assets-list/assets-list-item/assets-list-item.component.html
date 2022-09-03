@@ -1,6 +1,6 @@
-<td>
+<th scope="row">
   <app-text-field [value]="asset.name!" (save)="asset.name = $event.toString(); updateAsset(asset);"></app-text-field>
-</td>
+</th>
 <td>
   <app-currency-field [value]="asset.moneySpent" [walletCurrency]="walletCurrency" (save)="asset.moneySpent = $event; updateAsset(asset);"></app-currency-field>
 </td>
@@ -18,4 +18,7 @@
 </td>
 <td class="align-middle">
   {{asset | assetProfitPipe : true | percent}}
+</td>
+<td>
+  
 </td>
