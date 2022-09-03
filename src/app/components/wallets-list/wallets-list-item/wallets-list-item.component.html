@@ -6,7 +6,7 @@
     </a>
     <div *ngIf="isEditMode" class="input-group">
       <input type="text" class="form-control input-group-item" #renameField (keydown)="renameFieldKeyDown($event)"/>
-      <button class="btn btn-outline-success input-group-item" (click)="renameWallet(wallet.id!, renameField.value)">
+      <button class="btn btn-outline-success input-group-item" (click)="wallet.name=renameField.value; updateWallet(wallet)">
         <i class="bi bi-check2"></i>
       </button>
       <button class="btn btn-outline-danger input-group-item" (click)="disableEditMode()">

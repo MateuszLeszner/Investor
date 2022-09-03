@@ -1,7 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Consts } from 'src/app/consts';
+import { Asset } from 'src/app/models/asset';
 import { Wallet } from 'src/app/models/wallet';
+import { AssetsService } from 'src/app/services/assets.service';
 import { WalletsService } from 'src/app/services/wallets.service';
 
 @Component({
@@ -16,7 +19,9 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private walletsService: WalletsService
+    private walletsService: WalletsService,
+    private assetsService: AssetsService,
+    public consts: Consts
     ) { }
 
   ngOnInit(): void {
@@ -30,12 +35,17 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
   getWallet(): void {
     this.subscription = this.route.params.subscribe(params => {
       console.log(params);
-      const id = Number(params["id"]);
+      const id = String(params["id"]);
       console.log(`Loading wallet ${id}`);
       this.walletsService.getById(id)
         .then(wallet => {
-          console.log(wallet);
-          this.wallet = wallet
+          this.wallet = wallet;
+          this.assetsService.getByWalletId(id)
+            .toArray()
+            .then(assets => {
+              this.wallet!.assets = assets;
+              console.log(this.wallet);
+            })
         })
         .catch(err => {
           console.log(err)
@@ -43,4 +53,7 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateWallet(wallet: Wallet): void {
+    this.walletsService.update(wallet);
+  }
 }

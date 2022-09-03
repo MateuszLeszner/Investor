@@ -1,0 +1,21 @@
+<td>
+  <app-text-field [value]="asset.name!" (save)="asset.name = $event.toString(); updateAsset(asset);"></app-text-field>
+</td>
+<td>
+  <app-currency-field [value]="asset.moneySpent" [walletCurrency]="walletCurrency" (save)="asset.moneySpent = $event; updateAsset(asset);"></app-currency-field>
+</td>
+<td>
+  <app-number-field [value]="asset.count" (save)="asset.count = toNumber($event); updateAsset(asset);"></app-number-field>
+</td>
+<td>
+  <app-currency-field [value]="asset.currentValuePerUnit" [walletCurrency]="walletCurrency" (save)="asset.currentValuePerUnit = $event; updateAsset(asset);"></app-currency-field>
+</td>
+<td class="align-middle">
+  {{asset | assetCurrentTotalValue | currency : walletCurrency : 'symbol-narrow'}}
+</td>
+<td class="align-middle">
+  {{asset | assetProfitPipe | currency : walletCurrency : 'symbol-narrow'}}
+</td>
+<td class="align-middle">
+  {{asset | assetProfitPipe : true | percent}}
+</td>

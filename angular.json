@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "inwestycje.web": {
+    "inwestycje": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -33,6 +33,7 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.less"
             ],
             "scripts": [
@@ -76,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "inwestycje.web:build:production"
+              "browserTarget": "inwestycje:build:production"
             },
             "development": {
-              "browserTarget": "inwestycje.web:build:development"
+              "browserTarget": "inwestycje:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "inwestycje.web:build"
+            "browserTarget": "inwestycje:build"
           }
         },
         "test": {

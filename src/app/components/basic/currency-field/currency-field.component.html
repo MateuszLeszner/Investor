@@ -1,0 +1,22 @@
+<div *ngIf="isEditMode" class="input-group">
+  <input type="number" class="form-control input-group-item" [value]="value" (keydown)="inputFieldKeyDown($event)" #inputField />
+  <span class="input-group-text">{{currencySymbol}}</span>
+  <button class="btn btn-outline-success input-group-item" (click)="saveClick()">
+    <i class="bi bi-check2"></i>
+  </button>
+  <button class="btn btn-outline-danger input-group-item" (click)="disableEditMode()">
+    <i class="bi bi-x"></i>
+  </button>
+</div>
+<div *ngIf="!isEditMode" class="d-flex flex-row px-2">
+  <div class="d-block align-self-center me-2">
+    <span>
+      {{value | currency : walletCurrency : 'symbol-narrow'}}
+    </span>
+  </div>
+  <div>
+    <button *ngIf="!isEditMode" class="btn btn-light" aria-label="Edytuj" (click)="enableEditMode()">
+      <i class="bi bi-pencil"></i>
+    </button>
+  </div>
+</div>

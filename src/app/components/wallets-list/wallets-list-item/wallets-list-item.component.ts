@@ -20,12 +20,12 @@ export class WalletsListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public deleteWallet(id: number): void {
+  public deleteWallet(id: string): void {
     this.walletsService.delete(id);
   }
 
-  public renameWallet(id: number, newName: string): void {
-    this.walletsService.rename(id, newName);
+  public updateWallet(wallet: Wallet): void {
+    this.walletsService.update(wallet);
     this.isEditMode = false;
   }
 
@@ -43,7 +43,8 @@ export class WalletsListItemComponent implements OnInit {
 
   public renameFieldKeyDown(event: KeyboardEvent): void {
     if (event.code === 'Enter') {
-      this.renameWallet(this.wallet.id!, this.renameField?.nativeElement.value);
+      this.wallet.name = this.renameField?.nativeElement.value;
+      this.updateWallet(this.wallet);
     }
     else if (event.code === 'Escape') {
       this.disableEditMode();
