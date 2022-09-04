@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 export abstract class DbEntity {
     public id?: string;
 
+    public name?: string;
+
     constructor() {
         this.id = uuidv4();
     }

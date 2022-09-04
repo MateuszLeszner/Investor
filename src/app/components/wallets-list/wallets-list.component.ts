@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Wallet } from 'src/app/models/wallet';
 import { WalletsService } from 'src/app/services/wallets.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class WalletsListComponent {
   }
 
   public addWallet(name: string): void {
-    this.walletsService.add(name);
+    this.walletsService.add(new Wallet(name));
     this.isAddFieldVisible = false;
   }
 

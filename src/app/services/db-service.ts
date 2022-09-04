@@ -5,7 +5,7 @@ export interface DbService {
 
     getAll(): Promise<DbEntity[]>;
 
-    add(name: string): Promise<DbEntity | undefined>;
+    add(entity: DbEntity): Promise<DbEntity | undefined>;
 
     delete(id: string): Promise<void>;
 

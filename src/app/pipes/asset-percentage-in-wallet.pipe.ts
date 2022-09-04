@@ -7,6 +7,6 @@ import { Wallet } from "../models/wallet";
 })
 export class AssetPercentageInWalletPipe implements PipeTransform {
     transform(asset: Asset, wallet: Wallet) {
-        return Asset.getCurrentTotalValue(asset) / Wallet.getCurrentTotalValue(wallet)
+        return wallet.currentTotalValue ? Asset.getCurrentTotalValue(asset) / wallet.currentTotalValue : '';
     }
 }

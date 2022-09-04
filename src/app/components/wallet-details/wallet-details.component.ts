@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Consts } from 'src/app/consts';
@@ -13,9 +13,11 @@ import { WalletsService } from 'src/app/services/wallets.service';
   styleUrls: ['./wallet-details.component.less']
 })
 export class WalletDetailsComponent implements OnInit, OnDestroy {
-  public wallet: Wallet | undefined;
+  public wallet?: Wallet;
+  public isAssetsVisible: boolean = false;
 
-  private subscription: Subscription | undefined;
+  private subscription?: Subscription;
+  private assetsSubscribtion?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +32,7 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+    this.assetsSubscribtion?.unsubscribe();
   }
 
   getWallet(): void {
@@ -39,13 +42,24 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
       console.log(`Loading wallet ${id}`);
       this.walletsService.getById(id)
         .then(wallet => {
+          if (wallet) {
+            wallet.assets = this.assetsService.liveQueryToWalletAssets(id);
+            //this.assetsSubscribtion = 
+            wallet.assets.subscribe(assets => {
+              console.log('incoming assets', assets);
+              if (assets && assets.length > 0) {
+                this.isAssetsVisible = true;
+                wallet.totalMoneySpent = assets?.map(asset => asset.moneySpent).reduce((a, b) => Number(a) + Number(b), 0);
+                wallet.currentTotalValue = assets?.map(asset => Asset.getCurrentTotalValue(asset)).reduce((a, b) => a + b);
+                wallet.totalProfit = assets?.map(asset => Asset.getProfit(asset)).reduce((a, b) => Number(a) + Number(b), 0);
+                wallet.totalPercentageProfit = wallet.totalProfit && wallet.totalMoneySpent ? wallet.totalProfit / wallet.totalMoneySpent : undefined;
+              }
+              else {
+                this.isAssetsVisible = false;
+              }
+            });
+          }
           this.wallet = wallet;
-          this.assetsService.getByWalletId(id)
-            .toArray()
-            .then(assets => {
-              this.wallet!.assets = assets;
-              console.log(this.wallet);
-            })
         })
         .catch(err => {
           console.log(err)

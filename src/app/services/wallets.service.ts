@@ -23,8 +23,8 @@ export class WalletsService implements DbService {
     return await db.wallets.toArray()
   }
 
-  public async add(name: string): Promise<Wallet | undefined> {
-    const id = await db.wallets.add(new Wallet(name));
+  public async add(wallet: Wallet): Promise<Wallet | undefined> {
+    const id = await db.wallets.add(wallet);
     return await this.getById(id);
   }
 

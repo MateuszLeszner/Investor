@@ -25,4 +25,8 @@ export class AssetsListItemComponent implements OnInit {
   updateAsset(asset: Asset): void {
     this.assetsService.update(asset);
   }
+
+  deleteAsset(id: string): void {
+    this.assetsService.delete(id);
+  }
 }

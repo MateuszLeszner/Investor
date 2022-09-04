@@ -22,7 +22,7 @@
       </button>
     </div>
     <div>
-      <app-assets-list [wallet]="wallet"></app-assets-list>
+      <app-assets-list *ngIf="isAssetsVisible" [wallet]="wallet"></app-assets-list>
     </div>
   </div>
 </ng-container>

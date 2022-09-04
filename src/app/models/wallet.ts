@@ -1,19 +1,19 @@
+import { Observable } from "dexie";
 import { Asset } from "./asset";
 import { DbEntity } from "./db-entity";
 
 export class Wallet extends DbEntity {
-    name?: string;
+    public assets?: Observable<Asset[]>;
 
-    assets: Asset[] = [];
+    public currency: string = 'PLN';
 
-    currency: string = 'pln';
+    public totalMoneySpent?: number;
+    public currentTotalValue?: number;
+    public totalProfit?: number;
+    public totalPercentageProfit?: number;
 
     constructor(name: string) {
         super();
         this.name = name;
-    }
-
-    public static getCurrentTotalValue(wallet: Wallet): number {
-        return wallet.assets.map(asset => Asset.getCurrentTotalValue(asset)).reduce((a, b) => a + b);
     }
 }

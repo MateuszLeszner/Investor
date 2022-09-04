@@ -8,19 +8,21 @@
     <th>Zysk</th>
     <th>% zysku</th>
     <th>% zawartości portfela</th>
+    <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let asset of wallet.assets" app-assets-list-item [asset]="asset" [wallet]="wallet">
+    <tr *ngFor="let asset of wallet.assets | async" app-assets-list-item [asset]="asset" [wallet]="wallet">
     </tr>
   </tbody>
   <tfoot>
     <th scope="row">Razem</th>
-    <td>{{getTotalMoneySpent() | currency : wallet.currency : 'symbol-narrow'}}</td>
+    <td>{{wallet.totalMoneySpent | currency : wallet.currency : 'symbol-narrow'}}</td>
     <td></td>
     <td></td>
-    <td>{{getTotalCurrentValue() | currency : wallet.currency : 'symbol-narrow'}}</td>
-    <td>{{getTotalProfit() | currency : wallet.currency : 'symbol-narrow'}}</td>
-    <td>{{getTotalPercentageProfit() | percent}}</td>
+    <td>{{wallet.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}}</td>
+    <td>{{wallet.totalProfit | currency : wallet.currency : 'symbol-narrow'}}</td>
+    <td>{{wallet.totalPercentageProfit | percent}}</td>
+    <td></td>
     <td></td>
   </tfoot>
 </table>

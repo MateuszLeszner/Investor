@@ -2,8 +2,6 @@ import { DbEntity } from "./db-entity";
 import { Wallet } from "./wallet";
 
 export class Asset extends DbEntity {
-    name?: string;
-
     walletId?: string;
     wallet?: Wallet;
 

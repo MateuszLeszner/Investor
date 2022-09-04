@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Collection, liveQuery } from 'dexie';
+import { Collection, liveQuery, Observable } from 'dexie';
 import { db } from '../db';
 import { Asset } from '../models/asset';
-import { DbEntity } from '../models/db-entity';
 import { DbService } from './db-service';
 
 @Injectable({
@@ -23,9 +22,9 @@ export class AssetsService implements DbService {
     return await db.assets.toArray()
   }
 
-  public async add(name: string, walletId?: string): Promise<Asset | undefined> {
-    console.debug(`Adding asset ${name} to wallet ${walletId}`);
-    const id = await db.assets.add(new Asset(name, walletId));
+  public async add(asset: Asset): Promise<Asset | undefined> {
+    console.debug(`Adding asset ${asset.name} to wallet ${asset.walletId}`);
+    const id = await db.assets.add(asset);
     return await this.getById(id);
   }
 
@@ -43,6 +42,10 @@ export class AssetsService implements DbService {
   public getByWalletId(id: string): Collection<Asset, string> {
     console.debug(`Getting assets by wallet id ${id}`);
     return db.assets.where('walletId').equals(id);
+  }
+
+  public liveQueryToWalletAssets(walletId: string): Observable<Asset[]> {
+    return liveQuery(() => this.getByWalletId(walletId).toArray());
   }
 
   public async deleteByWalletId(id: string): Promise<number> {
