@@ -2,14 +2,16 @@ import { DbEntity } from "./db-entity";
 import { Wallet } from "./wallet";
 
 export class Asset extends DbEntity {
-    walletId?: string;
-    wallet?: Wallet;
+    public created: number = Date.now();
 
-    moneySpent: number = 0;
+    public walletId?: string;
+    public wallet?: Wallet;
 
-    count: number = 0;
+    public moneySpent: number = 0;
 
-    currentValuePerUnit: number = 0;
+    public count: number = 0;
+
+    public currentValuePerUnit: number = 0;
 
     constructor(name: string, walletId?: string) {
         super();

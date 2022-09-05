@@ -10,7 +10,7 @@ export class AppDB extends Dexie {
     super('inwestycje-db');
     this.version(1).stores({
       wallets: 'id, name',
-      assets: 'id, name, walletId'
+      assets: 'id, name, walletId, created'
     });
     this.on('populate', () => this.populate());
   }

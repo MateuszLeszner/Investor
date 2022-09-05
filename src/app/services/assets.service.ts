@@ -19,7 +19,7 @@ export class AssetsService implements DbService {
 
   public async getAll(): Promise<Asset[]> {
     console.debug('Getting all wallets');
-    return await db.assets.toArray()
+    return await db.assets.orderBy('created').toArray()
   }
 
   public async add(asset: Asset): Promise<Asset | undefined> {

@@ -13,6 +13,28 @@
   <tbody>
     <tr *ngFor="let asset of wallet.assets | async" app-assets-list-item [asset]="asset" [wallet]="wallet">
     </tr>
+    <tr *ngIf="!isNewAssetVisible">
+      <td>
+        <div class="d-flex flex-row">
+          <button class="btn btn-light" (click)="isNewAssetVisible = true" title="Nowe aktywo">
+            <i class="bi bi-file-earmark-plus"></i>
+          </button>
+          <button class="btn btn-light">
+            <i class="bi bi-folder-plus"></i>
+          </button>
+        </div>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr *ngIf="isNewAssetVisible" app-new-asset-row [wallet]="wallet" (onClose)="isNewAssetVisible = false">
+    </tr>
   </tbody>
   <tfoot>
     <th scope="row">Razem</th>

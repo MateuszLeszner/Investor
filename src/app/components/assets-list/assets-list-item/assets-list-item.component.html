@@ -20,7 +20,7 @@
   {{asset | assetProfitPipe : true | percent}}
 </td>
 <td class="align-middle">
-  {{asset | assetPercentageInWallet : wallet | percent}}
+  {{asset | assetPercentageInWallet : wallet.currentTotalValue | percent}}
 </td>
 <td>
   <app-delete-button [item]="asset" (deleteConfirmed)="deleteAsset($event)"></app-delete-button>

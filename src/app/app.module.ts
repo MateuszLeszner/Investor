@@ -22,6 +22,7 @@ import { TextFieldComponent } from './components/basic/text-field/text-field.com
 import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
 import { AssetPercentageInWalletPipe } from './pipes/asset-percentage-in-wallet.pipe';
 import { DeleteButtonComponent } from './components/basic/delete-button/delete-button.component';
+import { NewAssetRowComponent } from './components/new-asset-row/new-asset-row.component';
 
 registerLocaleData(localePL);
 
@@ -42,7 +43,8 @@ registerLocaleData(localePL);
     NumberFieldComponent,
     CurrencyFieldComponent,
     TextFieldComponent,
-    DeleteButtonComponent
+    DeleteButtonComponent,
+    NewAssetRowComponent
   ],
   imports: [
     BrowserModule,

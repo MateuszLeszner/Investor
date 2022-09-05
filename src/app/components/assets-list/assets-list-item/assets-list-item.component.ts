@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { Wallet } from 'src/app/models/wallet';
 import { AssetsService } from 'src/app/services/assets.service';
@@ -10,10 +10,10 @@ import { AssetsService } from 'src/app/services/assets.service';
 })
 export class AssetsListItemComponent implements OnInit {
   @Input()
-  asset!: Asset;
+  public asset!: Asset;
 
   @Input()
-  wallet!: Wallet;
+  public wallet!: Wallet;
 
   constructor(
     private assetsService: AssetsService
