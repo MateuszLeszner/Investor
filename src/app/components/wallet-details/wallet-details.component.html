@@ -1,5 +1,5 @@
 <ng-container *ngIf="wallet">
-  <h1>{{wallet.name}}</h1>
+  <h1>{{wallet.name}} ({{wallet.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}})</h1>
   <div class="d-flex flex-column">
     <div class="d-flex flex-row">
       <label class="me-2 align-self-center">
@@ -13,8 +13,14 @@
         (change)="updateWallet(wallet)">
       </ng-select>
     </div>
-    <div class="mt-2">
-      <app-assets-list *ngIf="isAssetsVisible" [wallet]="wallet"></app-assets-list>
+    <div class="mt-2 striped">
+      <div class="row border-bottom align-items-center fw-bold" app-list-header></div>
+      <div class="row border-bottom align-items-center" [ngClass]="even ? 'bg-light' :''" *ngFor="let asset of wallet.assets; let even = even" app-asset-info [asset]="asset" [wallet]="wallet"></div>
+      <div *ngIf="!isNewAssetVisible && !isNewContainerVisible" class="row border-bottom align-items-center" app-new-items-buttons (newAssetClicked)="isNewAssetVisible = true" (newContainerClicked)="isNewContainerVisible = true"></div>
+      <div *ngIf="isNewAssetVisible" class="row border-bottom align-items-center fst-italic" app-new-asset-row [wallet]="wallet" [parent]="wallet" (onClose)="isNewAssetVisible = false"></div>
+      <div class="row border-bottom align-items-center" *ngFor="let container of wallet.assetsContainers" app-container-details [container]="container" [wallet]="wallet"></div>
+      <div *ngIf="isNewContainerVisible" class="row border-bottom align-items-center fst-italic" app-new-container-row [wallet]="wallet" (onClose)="isNewContainerVisible = false"></div>
+      <div class="row border-bottom align-items-center fw-bold fs-5" app-wallet-summary [wallet]="wallet"></div>
     </div>
   </div>
 </ng-container>

@@ -9,20 +9,21 @@ import { SidebarComponent } from './components/_shared/sidebar/sidebar.component
 import { WalletsListItemComponent } from './components/wallets-list/wallets-list-item/wallets-list-item.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
-import { AssetsListComponent } from './components/assets-list/assets-list.component';
-import { AssetsListItemComponent } from './components/assets-list/assets-list-item/assets-list-item.component';
-import { AssetCurrentTotalValuePipe } from './pipes/asset-current-total-value.pipe';
-import { AssetProfitPipe } from './pipes/asset-profit.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
 import localePL from '@angular/common/locales/pl';
 import { registerLocaleData } from '@angular/common';
-import { NumberFieldComponent } from './components/basic/number-field/number-field.component';
-import { CurrencyFieldComponent } from './components/basic/currency-field/currency-field.component';
-import { TextFieldComponent } from './components/basic/text-field/text-field.component';
+import { CurrencyFieldComponent } from './components/_shared/currency-field/currency-field.component';
 import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
-import { AssetPercentageInWalletPipe } from './pipes/asset-percentage-in-wallet.pipe';
-import { DeleteButtonComponent } from './components/basic/delete-button/delete-button.component';
-import { NewAssetRowComponent } from './components/new-asset-row/new-asset-row.component';
+import { NumberFieldComponent } from './components/_shared/number-field/number-field.component';
+import { TextFieldComponent } from './components/_shared/text-field/text-field.component';
+import { DeleteButtonComponent } from './components/_shared/delete-button/delete-button.component';
+import { WalletSummaryComponent } from './components/wallet-details/wallet-summary/wallet-summary.component';
+import { AssetInfoComponent } from './components/wallet-details/asset-info/asset-info.component';
+import { ContainerDetailsComponent } from './components/wallet-details/container-details/container-details.component';
+import { ListHeaderComponent } from './components/wallet-details/list-header/list-header.component';
+import { NewAssetRowComponent } from './components/wallet-details/new-asset-row/new-asset-row.component';
+import { NewContainerRowComponent } from './components/wallet-details/new-container-row/new-container-row.component';
+import { NewItemsButtonsComponent } from './components/wallet-details/new-items-buttons/new-items-buttons.component';
 
 registerLocaleData(localePL);
 
@@ -34,17 +35,18 @@ registerLocaleData(localePL);
     SidebarComponent,
     WalletsListItemComponent,
     WalletDetailsComponent,
-    AssetsListComponent,
-    AssetsListItemComponent,
-    AssetCurrentTotalValuePipe,
-    AssetPercentageInWalletPipe,
-    AssetProfitPipe,
     CurrencySymbolPipe,
     NumberFieldComponent,
     CurrencyFieldComponent,
     TextFieldComponent,
     DeleteButtonComponent,
-    NewAssetRowComponent
+    NewAssetRowComponent,
+    WalletSummaryComponent,
+    AssetInfoComponent,
+    ContainerDetailsComponent,
+    ListHeaderComponent,
+    NewContainerRowComponent,
+    NewItemsButtonsComponent
   ],
   imports: [
     BrowserModule,

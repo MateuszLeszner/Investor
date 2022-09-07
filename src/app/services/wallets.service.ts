@@ -1,42 +1,38 @@
 import { Injectable } from '@angular/core';
-import { liveQuery } from 'dexie';
+import { liveQuery, Observable } from 'dexie';
 import { db } from '../db';
 import { Wallet } from '../models/wallet';
-import { AssetsService } from './assets.service';
-import { DbService } from './db-service';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WalletsService implements DbService {
-  public wallets$ = liveQuery(() => db.wallets.toArray());
+export class WalletsService {
+  public wallets$: Observable<Wallet[]> = liveQuery(() => db.wallets.toArray());
 
   constructor(
-    private assetsService: AssetsService
-  ) { }
-
-  public async getById(id: string): Promise<Wallet | undefined> {
-    return await db.wallets.get(id);
+    private utils: UtilsService
+  ) {
+    this.wallets$.subscribe(wallets => {
+      wallets.forEach(wallet => {
+        this.utils.fillWalletData(wallet);
+      });
+    })
   }
 
-  public async getAll(): Promise<Wallet[]> {
-    return await db.wallets.toArray()
+  public getById(id: string): Observable<Wallet | undefined> {
+    return liveQuery(() => db.wallets.get(id));
   }
 
-  public async add(wallet: Wallet): Promise<Wallet | undefined> {
-    const id = await db.wallets.add(wallet);
-    return await this.getById(id);
+  public async add(wallet: Wallet): Promise<string> {
+    return await db.wallets.add(wallet);
   }
 
   public async delete(id: string): Promise<void> {
-    return db.transaction('rw', db.wallets, db.assets, async () => {
-      await this.assetsService.deleteByWalletId(id);
-      return await db.wallets.delete(id);
-    });
+    return await db.wallets.delete(id);
   }
 
-  public async update(wallet: Wallet): Promise<Wallet | undefined> {
-    await db.wallets.update(wallet.id!, wallet);
-    return await this.getById(wallet.id!);
+  public async update(wallet: Wallet): Promise<number> {
+    return await db.wallets.update(wallet.id!, wallet);
   }
 }

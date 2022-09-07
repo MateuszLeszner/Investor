@@ -20,8 +20,8 @@ export class WalletsListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public deleteWallet(id: string): void {
-    this.walletsService.delete(id);
+  public deleteWallet(walletId: string): void {
+    this.walletsService.delete(walletId);
   }
 
   public updateWallet(wallet: Wallet): void {
@@ -34,6 +34,7 @@ export class WalletsListItemComponent implements OnInit {
     setTimeout(() => {
       this.renameField!.nativeElement.value = this.wallet.name;
       this.renameField!.nativeElement.focus();
+      this.renameField!.nativeElement.select();
     }, 1);
   }
 

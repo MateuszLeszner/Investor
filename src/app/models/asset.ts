@@ -1,11 +1,9 @@
-import { DbEntity } from "./db-entity";
-import { Wallet } from "./wallet";
+import { v4 as uuidv4 } from 'uuid';
 
-export class Asset extends DbEntity {
-    public created: number = Date.now();
+export class Asset {
+    public id?: string;
 
-    public walletId?: string;
-    public wallet?: Wallet;
+    public name: string;
 
     public moneySpent: number = 0;
 
@@ -13,23 +11,18 @@ export class Asset extends DbEntity {
 
     public currentValuePerUnit: number = 0;
 
-    constructor(name: string, walletId?: string) {
-        super();
+    public currentTotalValue?: number;
+    public profit?: number;
+    public percentageProfit?: number;
+    public walletRatio?: number;
+    public containerRatio?: number;
+
+    constructor(name: string) {
+        this.id = uuidv4();
         this.name = name;
-        this.walletId = walletId;
     }
 
-    public static getCurrentTotalValue(asset: Asset): number {
-        return asset.currentValuePerUnit * asset.count;
-    }
-
-    public static getProfit(asset: Asset): number {
-        return Asset.getCurrentTotalValue(asset) - asset.moneySpent;
-    }
-
-    public static getPercentageProfit(asset: Asset): number {
-        return Asset.getProfit(asset) / asset.moneySpent;
+    public equals(e1: Asset, e2: Asset): boolean {
+        return e1.id == e2.id
     }
 }
-
-
