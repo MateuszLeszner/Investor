@@ -23,6 +23,9 @@
 <div class="align-middle col">
   {{asset.walletRatio | percent}} <span *ngIf="container" class="ms-2 fst-italic text-black-50">{{asset.containerRatio | percent}}</span>
 </div>
+<div class="align-middle col bg-light model">
+  <app-number-field [value]="asset.modelRatio" (save)="asset.modelRatio = $event; saveWallet();" [isPercent]="true"></app-number-field>
+</div>
 <div class="align-middle col">
   <app-delete-button [item]="asset" (deleteConfirmed)="deleteAsset($event)"></app-delete-button>
 </div>

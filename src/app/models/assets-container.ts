@@ -8,6 +8,8 @@ export class AssetsContainer {
 
     public assets: Asset[] = [];
 
+    public modelRatio: number = 0;
+
     public totalMoneySpent?: number;
     public currentTotalValue?: number;
     public totalProfit?: number;

@@ -1,5 +1,6 @@
 <div *ngIf="isEditMode" class="input-group">
-  <input type="number" class="form-control input-group-item" [value]="value" (keydown)="inputFieldKeyDown($event)" #inputField />
+  <input type="number" class="form-control input-group-item" [value]="isPercent ? value * 100 : value" (keydown)="inputFieldKeyDown($event)" #inputField />
+  <span *ngIf="isPercent" class="input-group-item">%</span>
   <button class="btn btn-outline-success input-group-item" (click)="saveClick()">
     <i class="bi bi-check2"></i>
   </button>
@@ -9,8 +10,11 @@
 </div>
 <div *ngIf="!isEditMode" class="d-flex flex-row px-2">
   <div class="d-block align-self-center me-2">
-    <span>
+    <span *ngIf="!isPercent">
       {{value}}
+    </span>
+    <span *ngIf="isPercent">
+      {{value | percent}}
     </span>
   </div>
   <button *ngIf="!isEditMode" class="btn btn-light" aria-label="Edytuj" (click)="enableEditMode()">

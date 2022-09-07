@@ -14,6 +14,9 @@
     <div class="align-middle col fw-semibold">{{container.totalProfit | currency : wallet.currency : 'symbol-narrow'}}</div>
     <div class="align-middle col fw-semibold">{{container.totalPercentageProfit | percent}}</div>
     <div class="align-middle col fw-semibold">{{container.walletRatio | percent}}</div>
+    <div class="align-middle col fw-semibold bg-light model">
+      <app-number-field [value]="container.modelRatio" (save)="container.modelRatio = $event; saveWallet();" [isPercent]="true"></app-number-field>
+    </div>
     <div class="align-middle col"><app-delete-button [item]="container" (deleteConfirmed)="deleteContainer($event)"></app-delete-button></div>
   </div>
   <div *ngIf="areDetailsVisible" class="row">

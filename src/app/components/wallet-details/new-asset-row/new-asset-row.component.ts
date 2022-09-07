@@ -20,6 +20,7 @@ export class NewAssetRowComponent implements OnInit {
   public onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild('nameField') nameField: ElementRef | undefined;
+  @ViewChild('modelRatioField') modelRatioField: ElementRef | undefined;
 
   public asset!: Asset;
 
@@ -36,6 +37,7 @@ export class NewAssetRowComponent implements OnInit {
   }
 
   public saveAsset(): void {
+    this.asset.modelRatio = Number(this.modelRatioField!.nativeElement.value) / 100;
     this.parent.assets.push(this.asset);
     this.walletsService.update(this.wallet);
     this.asset = new Asset('Podaj nazwę kolejnego aktywa');

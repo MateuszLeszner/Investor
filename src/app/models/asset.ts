@@ -7,9 +7,11 @@ export class Asset {
 
     public moneySpent: number = 0;
 
-    public count: number = 0;
+    public count: number = 1;
 
     public currentValuePerUnit: number = 0;
+
+    public modelRatio: number = 0;
 
     public currentTotalValue?: number;
     public profit?: number;
