@@ -18,6 +18,7 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
   public isNewContainerVisible: boolean = false;
 
   private subscription?: Subscription;
+  private detailsVisibility: {containerId: string, visible: boolean}[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +35,7 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  getWallet(): void {
+  public getWallet(): void {
     this.subscription = this.route.params.subscribe(params => {
       console.log(params);
       const id = String(params["id"]);
@@ -50,7 +51,26 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateWallet(wallet: Wallet): void {
+  public updateWallet(wallet: Wallet): void {
     this.walletsService.update(wallet);
+  }
+
+  public showDetails(containerId: string, visible: boolean): void {
+    const element = this.detailsVisibility.find(x => x.containerId === containerId);
+    if (!element) {
+      this.detailsVisibility.push({containerId: containerId, visible: visible});
+    }
+    else {
+      element.visible = visible;
+    }
+  }
+
+  public areDetailsVisible(containerId: string): boolean {
+    const value = this.detailsVisibility.find(x => x.containerId === containerId)?.visible;
+    if (value) {
+      return true;
+    }
+
+    return false;
   }
 }

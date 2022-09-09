@@ -1,31 +1,31 @@
-<div class="align-middle col-2 d-flex align-items-center fw-semibold fs-6">
+<td class="align-middle d-flex align-items-center fw-semibold fs-6">
   <i *ngIf="inner" class="bi bi-dash-lg"></i>
   <app-text-field [value]="asset.name" (save)="asset.name = $event; saveWallet()"></app-text-field>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <app-currency-field [value]="asset.moneySpent" [currency]="wallet.currency" (save)="asset.moneySpent = $event; saveWallet();"></app-currency-field>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <app-number-field [value]="asset.count" (save)="asset.count = $event; saveWallet();"></app-number-field>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <app-currency-field [value]="asset.currentValuePerUnit" [currency]="wallet.currency" (save)="asset.currentValuePerUnit = $event; saveWallet();"></app-currency-field>
-</div>
-<div class="align-middle col fw-semibold fs-6">
+</td>
+<td class="align-middle fw-semibold fs-6">
   {{asset.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}}
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   {{asset.profit | currency : wallet.currency : 'symbol-narrow'}}
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   {{asset.percentageProfit | percent}}
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   {{asset.walletRatio | percent}} <span *ngIf="container" class="ms-2 fst-italic text-black-50">{{asset.containerRatio | percent}}</span>
-</div>
-<div class="align-middle col bg-light model">
+</td>
+<td class="align-middle bg-primary bg-opacity-10 text-muted model">
   <app-number-field [value]="asset.modelRatio" (save)="asset.modelRatio = $event; saveWallet();" [isPercent]="true"></app-number-field>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <app-delete-button [item]="asset" (deleteConfirmed)="deleteAsset($event)"></app-delete-button>
-</div>
+</td>

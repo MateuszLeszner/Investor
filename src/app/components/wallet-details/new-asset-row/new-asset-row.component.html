@@ -1,38 +1,38 @@
-<div class="align-middle col-2">
+<td class="align-middle">
   <input type="text" class="form-control" [(ngModel)]="asset.name" #nameField (keydown)="keyDown($event)"/>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <div class="input-group">
     <input type="number" class="form-control input-group-item" [(ngModel)]="asset.moneySpent" (keydown)="keyDown($event)"/>
     <span class="input-group-text">{{wallet.currency | currencySymbol}}</span>
   </div>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <input type="number" class="form-control" [(ngModel)]="asset.count" />
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <div class="input-group">
     <input type="number" class="form-control input-group-item" [(ngModel)]="asset.currentValuePerUnit" (keydown)="keyDown($event)"/>
     <span class="input-group-text">{{wallet.currency | currencySymbol}}</span>
   </div>
-</div>
-<div class="align-middle col">
-  {{asset.currentValuePerUnit * asset.count | currency : wallet.currency : 'symbol-narrow'}}
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
+      {{asset.currentValuePerUnit * asset.count | currency : wallet.currency : 'symbol-narrow'}}
+</td>
+<td class="align-middle">
   {{asset.currentValuePerUnit * asset.count - asset.moneySpent | currency : wallet.currency : 'symbol-narrow'}}
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   {{(asset.currentValuePerUnit * asset.count - asset.moneySpent) / asset.moneySpent | percent}}
-</div>
-<div class="align-middle col">&nbsp;</div>
-<div class="align-middle col bg-light model">
+</td>
+<td class="align-middle">&nbsp;</td>
+<td class="align-middle bg-primary bg-opacity-10 text-muted model">
   <div class="input-group">
     <input type="number" class="form-control input-group-item" [value]="asset.modelRatio * 100" (keydown)="keyDown($event)" #modelRatioField />
-    <span class="input-group-item">%</span>
+    <span class="input-group-item align-self-center">%</span>
   </div>
-</div>
-<div class="align-middle col">
+</td>
+<td class="align-middle">
   <div class="input-group">
     <button class="btn btn-outline-success input-group-item" title="Zapisz" (click)="saveAsset()">
       <i class="bi bi-check2"></i>
@@ -41,4 +41,4 @@
       <i class="bi bi-x"></i>
     </button>
   </div>
-</div>
+</td>

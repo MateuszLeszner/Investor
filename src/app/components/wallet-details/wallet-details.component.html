@@ -13,14 +13,27 @@
         (change)="updateWallet(wallet)">
       </ng-select>
     </div>
-    <div class="mt-2 striped">
-      <div class="row border-bottom align-items-center fw-bold" app-list-header></div>
-      <div class="row border-bottom align-items-center" [ngClass]="even ? 'bg-light' :''" *ngFor="let asset of wallet.assets; let even = even" app-asset-info [asset]="asset" [wallet]="wallet"></div>
-      <div *ngIf="!isNewAssetVisible && !isNewContainerVisible" class="row border-bottom align-items-center" app-new-items-buttons (newAssetClicked)="isNewAssetVisible = true" (newContainerClicked)="isNewContainerVisible = true"></div>
-      <div *ngIf="isNewAssetVisible" class="row border-bottom align-items-center fst-italic" app-new-asset-row [wallet]="wallet" [parent]="wallet" (onClose)="isNewAssetVisible = false"></div>
-      <div class="row border-bottom align-items-center" *ngFor="let container of wallet.assetsContainers" app-container-details [container]="container" [wallet]="wallet"></div>
-      <div *ngIf="isNewContainerVisible" class="row border-bottom align-items-center fst-italic" app-new-container-row [wallet]="wallet" (onClose)="isNewContainerVisible = false"></div>
-      <div class="row border-bottom align-items-center fw-bold fs-5" app-wallet-summary [wallet]="wallet"></div>
-    </div>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr class="align-items-center fw-bold" app-list-header></tr>
+      </thead>
+      <tbody>
+        <tr class="align-items-center" *ngFor="let asset of wallet.assets" app-asset-info [asset]="asset" [wallet]="wallet"></tr>
+        <tr *ngIf="!isNewAssetVisible && !isNewContainerVisible" class="align-items-center" app-new-items-buttons (newAssetClicked)="isNewAssetVisible = true" (newContainerClicked)="isNewContainerVisible = true"></tr>
+        <tr *ngIf="isNewAssetVisible" class="align-items-center fst-italic" app-new-asset-row [wallet]="wallet" [parent]="wallet" (onClose)="isNewAssetVisible = false"></tr>
+        <ng-container *ngFor="let container of wallet.assetsContainers" >
+          <tr class="align-items-center bg-info bg-opacity-25" app-container-details [container]="container" [wallet]="wallet" (detailsVisibilityChanged)="showDetails(container.id!, $event)"></tr>
+          <ng-container *ngIf="areDetailsVisible(container.id!)">
+            <tr class="align-items-center" *ngFor="let asset of container.assets" app-asset-info [asset]="asset" [wallet]="wallet" [container]="container" [inner]="true"></tr>
+            <tr *ngIf="!isNewAssetVisible" class="align-items-center" app-new-items-buttons (newAssetClicked)="isNewAssetVisible = true" [containerButton]="false"></tr>
+            <tr *ngIf="isNewAssetVisible" class="align-items-center fst-italic" app-new-asset-row [wallet]="wallet" [parent]="container" (onClose)="isNewAssetVisible = false"></tr>
+          </ng-container>
+        </ng-container>
+        <tr *ngIf="isNewContainerVisible" class="align-items-center fst-italic" app-new-container-row [wallet]="wallet" (onClose)="isNewContainerVisible = false"></tr>
+      </tbody>
+      <tfoot>
+        <tr class="align-items-center fw-bold fs-5" app-wallet-summary [wallet]="wallet"></tr>
+      </tfoot>
+    </table>
   </div>
 </ng-container>

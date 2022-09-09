@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AssetsContainer } from 'src/app/models/assets-container';
 import { Wallet } from 'src/app/models/wallet';
 import { WalletsService } from 'src/app/services/wallets.service';
@@ -15,7 +15,10 @@ export class ContainerDetailsComponent implements OnInit {
   @Input()
   public container!: AssetsContainer;
 
-  public areDetailsVisible: boolean = true;
+  @Output()
+  public detailsVisibilityChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  public areDetailsVisible: boolean = false;
 
   public isNewAssetVisible: boolean = false;
 
