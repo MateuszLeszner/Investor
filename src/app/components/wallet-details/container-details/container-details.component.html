@@ -15,4 +15,12 @@
 <td class="align-middle fw-semibold text-muted model bg-primary bg-opacity-10">
   <app-number-field [value]="container.modelRatio" (save)="container.modelRatio = $event; saveWallet();" [isPercent]="true"></app-number-field>
 </td>
+<td class="align-middle fw-semibold text-muted model bg-primary bg-opacity-10">
+  <span *ngIf="container.walletRatio! > container.modelRatio!">
+    Sprzedaj za {{(container.walletRatio! - container.modelRatio!) * wallet.currentTotalValue! | currency : wallet.currency : 'symbol-narrow'}}
+  </span>
+  <span *ngIf="container.walletRatio! < container.modelRatio!">
+    Kup za {{(container.modelRatio! - container.walletRatio!) * wallet.currentTotalValue! | currency : wallet.currency : 'symbol-narrow'}}
+  </span>
+</td>
 <td class="align-middle"><app-delete-button [item]="container" (deleteConfirmed)="deleteContainer($event)"></app-delete-button></td>
