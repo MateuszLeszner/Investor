@@ -17,6 +17,7 @@ export class Wallet {
     public currentTotalValue?: number;
     public totalProfit?: number;
     public totalPercentageProfit?: number;
+    public totalWalletRatio?: number;
 
     constructor(name: string) {
         this.id = uuidv4();

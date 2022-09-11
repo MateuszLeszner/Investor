@@ -59,12 +59,16 @@ export class UtilsService {
   }
 
   private fillWalletRatios(wallet: Wallet): void {
+    wallet.totalWalletRatio = 0;
+
     wallet.assets.forEach(asset => {
       asset.walletRatio = asset.currentTotalValue! / wallet.currentTotalValue!;
+      wallet.totalWalletRatio! += asset.modelRatio;
     });
 
     wallet.assetsContainers?.forEach(container => {
       this.fillAssetsContainerRatio(container, wallet.currentTotalValue!);
+      wallet.totalWalletRatio! += container.modelRatio;
     })
   }
 

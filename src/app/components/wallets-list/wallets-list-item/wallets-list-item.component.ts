@@ -11,7 +11,11 @@ export class WalletsListItemComponent implements OnInit {
   @Input()
   public wallet!: Wallet;
 
-  @ViewChild('renameField') renameField: ElementRef | undefined;
+  @ViewChild('renameField')
+  private renameField: ElementRef | undefined;
+
+  @ViewChild('sidebarMenu')
+  private sidebar: ElementRef | undefined;
 
   public isEditMode: boolean = false;
 

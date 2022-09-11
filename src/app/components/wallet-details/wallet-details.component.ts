@@ -14,10 +14,10 @@ import { WalletsService } from 'src/app/services/wallets.service';
 export class WalletDetailsComponent implements OnInit, OnDestroy {
   public wallet?: Wallet;
 
-  public isNewAssetVisible: boolean = false;
   public isNewContainerVisible: boolean = false;
 
   private subscription?: Subscription;
+  private newItemVisiblity: {containerId: string, visible: boolean}[] = [];
   private detailsVisibility: {containerId: string, visible: boolean}[] = [];
 
   constructor(
@@ -67,6 +67,25 @@ export class WalletDetailsComponent implements OnInit, OnDestroy {
 
   public areDetailsVisible(containerId: string): boolean {
     const value = this.detailsVisibility.find(x => x.containerId === containerId)?.visible;
+    if (value) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public showNewAsset(containerId: string, visible: boolean): void {
+    const element = this.newItemVisiblity.find(x => x.containerId === containerId);
+    if (!element) {
+      this.newItemVisiblity.push({containerId: containerId, visible: visible});
+    }
+    else {
+      element.visible = visible;
+    }
+  }
+
+  public isNewAssetVisible(containerId: string): boolean {
+    const value = this.newItemVisiblity.find(x => x.containerId === containerId)?.visible;
     if (value) {
       return true;
     }
