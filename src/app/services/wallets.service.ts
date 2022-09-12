@@ -35,4 +35,22 @@ export class WalletsService {
   public async update(wallet: Wallet): Promise<number> {
     return await db.wallets.update(wallet.id!, wallet);
   }
+
+  public async downloadBackup(): Promise<void> {
+    const subscribtion = this.wallets$.subscribe(wallets => {
+      const date = new Date().toISOString().substring(0, 19);
+      const fileName = `inwestycje-${date}.json`;
+
+      const serialized = JSON.stringify(wallets);
+      console.log(serialized);
+      const file = new window.Blob([serialized], { type: 'Application/json' });
+      const downloadAncher = document.createElement("a");
+      downloadAncher.style.display = "none";
+      const fileURL = URL.createObjectURL(file);
+        downloadAncher.href = fileURL;
+        downloadAncher.download = fileName;
+        downloadAncher.click();
+      subscribtion.unsubscribe();
+    });
+  }
 }

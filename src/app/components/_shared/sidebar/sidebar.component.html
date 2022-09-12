@@ -1,5 +1,10 @@
 <nav id="sidebarMenu" class="bg-light sidebar collapse" #sidebarMenu>
   <div class="position-sticky pt-3 sidebar-sticky">
     <app-wallets-list></app-wallets-list>
+    <div>
+      <button class="btn btn-outline-dark" (click)="downloadBackup()">
+        <i class="bi bi-box-arrow-down"></i>
+      </button>
+    </div>
   </div>
 </nav>
