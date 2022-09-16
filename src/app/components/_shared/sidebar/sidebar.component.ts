@@ -18,4 +18,10 @@ export class SidebarComponent implements OnInit {
   public downloadBackup(): void {
     this.walletsService.downloadBackup();
   }
+
+  public uploadBackup(): void {
+    if (confirm('Załadowanie kopii bazy danych zastąpi aktualne portfele. Czy chcesz kontynuować?')) {
+      console.log('confirmed');
+    }
+  }
 }
