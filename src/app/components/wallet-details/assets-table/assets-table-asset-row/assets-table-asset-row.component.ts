@@ -33,4 +33,12 @@ export class AssetsTableAssetRowComponent implements OnInit {
       this.saveWallet();
     }
   }
+
+  public buyMore(): void {
+
+  }
+
+  public sell(): void {
+    alert('Not implemented yet');
+  }
 }

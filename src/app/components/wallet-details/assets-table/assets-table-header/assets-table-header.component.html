@@ -3,7 +3,7 @@
   <div class="assets-table-cell-collapse"></div>
   <div class='assets-table-cell f-2 text-start' title="Nazwa aktywa">Aktywo</div>
   <div class="assets-table-cell-action text-end" title="Dodaj nową grupę aktywów">
-    <i class="button bi bi-folder-plus" (click)="createContainerClicked.emit()"></i>
+    <app-small-button icon="bi-folder-plus" (buttonClicked)="createContainerClicked.emit()"></app-small-button>
   </div>
   <div class='assets-table-cell text-end' title="Koszt zakupu">Koszt</div>
   <div class='assets-table-cell text-end' title="Liczba posiadanych jednostek">Liczba</div>

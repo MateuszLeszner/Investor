@@ -169,6 +169,11 @@ app-wallet-details {
   .text-start input {
     text-align: start !important;
   }
+
+  app-small-button {
+    font-size: 1rem;
+    vertical-align: middle;
+  }
 }
 
 .editable {
