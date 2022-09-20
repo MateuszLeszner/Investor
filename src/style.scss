@@ -163,6 +163,27 @@ app-wallet-details {
       input {
         background-color: $inputBackground;
       }
+
+      app-assets-buy-sell {
+        .buy-sell {
+          position: absolute;
+          width: 20rem;
+          height: 10rem;
+          z-index: 150;
+          top: 160px;
+          left: 1000px;
+          border-radius: 0.4rem;
+          border-color: black;
+          border-style: solid;
+          border-width: 0.15rem;
+          background-color: $magnolia;
+          padding: 1rem;
+        }
+
+        .buy-sell:hover {
+          opacity: 1 !important;
+        }
+      }
     }
   }
 

@@ -23,6 +23,7 @@ import { AssetsTableContainerComponent } from './components/wallet-details/asset
 import { AssetsTableAssetRowComponent } from './components/wallet-details/assets-table/assets-table-asset-row/assets-table-asset-row.component';
 import { AssetsTableCollapseButtonComponent } from './components/wallet-details/assets-table/assets-table-collapse-button/assets-table-collapse-button.component';
 import { SmallButtonComponent } from './components/_shared/small-button/small-button.component';
+import { AssetsBuySellComponent } from './components/wallet-details/assets-table/assets-buy-sell/assets-buy-sell.component';
 
 registerLocaleData(localePL);
 
@@ -44,7 +45,8 @@ registerLocaleData(localePL);
     AssetsTableContainerComponent,
     AssetsTableAssetRowComponent,
     AssetsTableCollapseButtonComponent,
-    SmallButtonComponent
+    SmallButtonComponent,
+    AssetsBuySellComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,9 @@ export class AssetsTableAssetRowComponent implements OnInit {
 
   @Input()
   public asset!: Asset;
+  
+  public isBuyVisible: boolean = false;
+  public isSellVisible: boolean = false;
 
   constructor(
     private walletsService: WalletsService
@@ -32,13 +35,5 @@ export class AssetsTableAssetRowComponent implements OnInit {
       });
       this.saveWallet();
     }
-  }
-
-  public buyMore(): void {
-
-  }
-
-  public sell(): void {
-    alert('Not implemented yet');
   }
 }

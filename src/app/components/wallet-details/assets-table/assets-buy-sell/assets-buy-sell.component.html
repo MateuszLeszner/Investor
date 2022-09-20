@@ -1,0 +1,49 @@
+<div class="buy-sell d-flex flex-column">
+  <div class="d-flex">
+    <div class="assets-table-cell">
+      Liczba:
+    </div>
+    <div class="assets-table-cell">
+      <input
+        type="number"
+        min="0"
+        [(ngModel)]="count"
+        (change)="unitPrice != 0 && unitPrice != undefined ? totalPrice = count * unitPrice : unitPrice = totalPrice / count"
+      >
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="assets-table-cell">
+      Cena jednostkowa:
+    </div>
+    <div class="assets-table-cell d-flex">
+      <input
+        type="number"
+        min="0"
+        [(ngModel)]="unitPrice"
+        (change)="totalPrice = count * unitPrice"
+      >
+      <span>{{wallet.currency | currencySymbol}}</span>
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="assets-table-cell">
+      Łączny koszt:
+    </div>
+    <div class="assets-table-cell d-flex">
+      <input
+        type="number"
+        min="0"
+        [(ngModel)]="totalPrice"
+        (change)="unitPrice = totalPrice / count"
+      >
+      <span>{{wallet.currency | currencySymbol}}</span>
+    </div>
+  </div>
+  <div class="d-flex mt-3">
+    <div class="assets-table-cell"></div>
+    <div class="assets-table-cell">
+      <button class="btn btn-outline-success">Kup</button>
+    </div>
+  </div>
+</div>
