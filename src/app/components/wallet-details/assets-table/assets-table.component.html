@@ -1,0 +1,10 @@
+<div class='assets-table-header' app-assets-table-header (createContainerClicked)="createAssetsContainer()"></div>
+<div class='assets-table-body'>
+  <div class="assets-table-container"
+    *ngFor="let assetsContainer of wallet.assetsContainers"
+    app-assets-table-container
+    [wallet]="wallet"
+    [assetsContainer]="assetsContainer">
+  </div>
+</div>
+<div class="assets-table-footer" app-assets-table-footer [wallet]="wallet"></div>

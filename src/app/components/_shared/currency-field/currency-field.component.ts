@@ -24,6 +24,7 @@ export class CurrencyFieldComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.value = Number(this.value);
   }
 
   public enableEditMode(): void {
@@ -39,7 +40,11 @@ export class CurrencyFieldComponent implements OnInit {
     this.isEditMode = false;
   }
 
-  public saveClick(): void {
+  public saveClick(autoSave: boolean = false): void {
+    if (autoSave && (!this.inputField!.nativeElement.value || this.inputField!.nativeElement.value == 0)) {
+      return;
+    }
+
     this.value = this.inputField!.nativeElement.value;
     this.save.emit(this.value);
     this.disableEditMode();

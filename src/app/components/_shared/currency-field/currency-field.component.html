@@ -1,22 +1,8 @@
-<div *ngIf="isEditMode" class="input-group">
-  <input type="number" class="form-control input-group-item" [value]="value" (keydown)="inputFieldKeyDown($event)" #inputField />
-  <span class="input-group-text">{{currency | currencySymbol}}</span>
-  <button class="btn btn-outline-success input-group-item btn-sm" (click)="saveClick()">
-    <i class="bi bi-check2"></i>
-  </button>
-  <button class="btn btn-outline-danger input-group-item btn-sm" (click)="disableEditMode()">
-    <i class="bi bi-x"></i>
-  </button>
-</div>
-<div *ngIf="!isEditMode" class="d-flex flex-row px-2">
-  <div class="d-block align-self-center me-2">
-    <span>
-      {{value | currency : currency : 'symbol-narrow'}}
-    </span>
-  </div>
-  <div>
-    <button *ngIf="!isEditMode" class="btn btn-light btn-sm" aria-label="Edytuj" (click)="enableEditMode()">
-      <i class="bi bi-pencil"></i>
-    </button>
-  </div>
+<span *ngIf="!isEditMode" class="editable" (click)="enableEditMode()" title="{{value | currency : currency : 'symbol-narrow'}}">
+  <app-small-button *ngIf="!value" icon="bi-pencil" (buttonClicked)="enableEditMode()"></app-small-button>
+  {{value | currency : currency : 'symbol-narrow'}}
+</span>
+<div *ngIf="isEditMode" class="d-flex">
+  <input type="number" [value]="value" (keydown)="inputFieldKeyDown($event)" (blur)="saveClick(true)" #inputField />
+  <span>{{currency | currencySymbol}}</span>
 </div>

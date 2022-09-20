@@ -1,0 +1,176 @@
+@import "variables.scss";
+
+body, html, app-root, main {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+app-root {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+app-sidebar, nav {
+  width: 294px;
+  height: 100%;
+  flex: 0 0 auto;
+  z-index: 100;
+
+  .sidebar {
+    background-color: $sidebar-color;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+app-wallet-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 50rem;
+  width: 100%;
+  height: 100%;
+  background-color: $walletBackground;
+
+  .wallet-header {
+    background-color: $walletHeaderBackground;
+    width: 100%;
+    z-index: 100;
+    min-height: 5.5rem;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .wallet-body {
+    width: 100%;
+    min-width: 562px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  
+    .assets-table {
+      display: flex;
+      flex-direction: column;
+      min-width: 562px;
+      width: 100%;
+      cursor: default;
+    
+      .assets-table-header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        //height: 3rem;
+        height: 1.5rem;
+        text-transform: uppercase;
+        position: -webkit-sticky;
+        position: sticky;
+        cursor: default;
+
+        // .assets-table-row {
+        //   height: 3rem !important;
+        // }
+      }
+    
+      .assets-table-body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    
+      .assets-table-footer {
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        cursor: default;
+      }
+    
+      .assets-table-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 1.5rem;
+        width: 100%;
+        font-size: .875rem;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border-bottom: 1px solid $divider-color;
+        align-items: center;
+      }
+    
+      .assets-table-row:hover {
+        background-color: $hover-row-color;
+        opacity: 0.8;
+      }
+    
+      .assets-table-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    
+        .assets-table-container-header {
+          background-color: $assets-container-color;
+          font-variant: small-caps;
+        }
+      }
+    
+      .assets-table-cell {
+        flex: 1 1 0;
+        height: 100%;
+
+        input {
+          border-color: transparent;
+          border-radius: 0.4em;
+          height: 100%;
+          margin: 0;
+          padding: 0 0.1875rem;
+          text-align: right;
+          width: 100%;
+        }
+      }
+    
+      .assets-table-cell-margin {
+        width: 1rem;
+      }
+    
+      .assets-table-cell-collapse {
+        width: 1.2rem;
+        cursor: pointer;
+      }
+
+      .assets-table-cell-action {
+        flex: 0 0 1rem;
+        overflow: hidden;
+      }
+
+      .f-2 {
+        flex: 2 1 0 !important;
+      }
+
+      .button {
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: $hoveredButton;
+      }
+
+      input {
+        background-color: $inputBackground;
+      }
+    }
+  }
+
+  .text-start input {
+    text-align: start !important;
+  }
+}
+
+.editable {
+  cursor: text;
+}

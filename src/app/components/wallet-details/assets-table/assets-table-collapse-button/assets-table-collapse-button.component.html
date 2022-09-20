@@ -1,0 +1,4 @@
+<div (click)="collapseChanged.emit(!isCollapsed)">
+  <i *ngIf="isCollapsed" class="bi bi-caret-right-fill"></i>
+  <i *ngIf="!isCollapsed" class="bi bi-caret-down-fill"></i>
+</div>

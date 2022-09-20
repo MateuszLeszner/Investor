@@ -34,7 +34,11 @@ export class TextFieldComponent implements OnInit {
     this.isEditMode = false;
   }
 
-  public saveClick(): void {
+  public saveClick(autoSave: boolean = false): void {
+    if (autoSave && !this.inputField!.nativeElement.value) {
+      return;
+    }
+
     this.value = this.inputField!.nativeElement.value;
     this.save.emit(this.value);
     this.disableEditMode();

@@ -1,0 +1,54 @@
+<div class='assets-table-row assets-table-container-header'>
+  <div class='assets-table-cell-margin'></div>
+  <div class="assets-table-cell-collapse"
+    app-assets-table-collapse-button
+    [isCollapsed]="assetsContainer.isCollapsed"
+    (collapseChanged)="assetsContainer.isCollapsed = $event; saveWallet()">
+  </div>
+  <div class='assets-table-cell f-2 text-start'>
+    <app-text-field [value]="assetsContainer.name!" (save)="assetsContainer.name = $event; saveWallet()"></app-text-field>
+  </div>
+  <div class="assets-table-cell-action text-end">
+    <app-small-button title="Dodaj nowe aktywo" icon="bi-plus-lg" (buttonClicked)="createAsset()"></app-small-button>
+  </div>
+  <div class='assets-table-cell text-end'>
+    {{assetsContainer.totalMoneySpent | currency : wallet.currency : 'symbol-narrow'}}
+  </div>
+  <div class='assets-table-cell text-end'></div>
+  <div class='assets-table-cell text-end'></div>
+  <div class='assets-table-cell text-end'>
+    {{assetsContainer.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}}
+  </div>
+  <div class='assets-table-cell text-end'>
+    {{assetsContainer.totalProfit | currency : wallet.currency : 'symbol-narrow'}}
+  </div>
+  <div class='assets-table-cell text-end'>
+    {{assetsContainer.totalPercentageProfit | percent}}
+  </div>
+  <div class='assets-table-cell text-end'>
+    {{assetsContainer.walletRatio | percent}}
+  </div>
+  <div class='assets-table-cell text-end bg-primary bg-opacity-10'>
+    <app-number-field [value]="assetsContainer.modelRatio" (save)="assetsContainer.modelRatio = $event; saveWallet();" [isPercent]="true"></app-number-field>
+  </div>
+  <div class='assets-table-cell text-end bg-primary bg-opacity-10'>
+    <span *ngIf="assetsContainer.walletRatio! > assetsContainer.modelRatio! && (assetsContainer.walletRatio! - assetsContainer.modelRatio!) * wallet.currentTotalValue! > 500">
+      Sprzedaj za {{(assetsContainer.walletRatio! - assetsContainer.modelRatio!) * wallet.currentTotalValue! | currency : wallet.currency : 'symbol-narrow'}}
+    </span>
+    <span *ngIf="assetsContainer.walletRatio! < assetsContainer.modelRatio! && (assetsContainer.modelRatio! - assetsContainer.walletRatio!) * wallet.currentTotalValue! > 500">
+      Kup za {{(assetsContainer.modelRatio! - assetsContainer.walletRatio!) * wallet.currentTotalValue! | currency : wallet.currency : 'symbol-narrow'}}
+    </span>
+  </div>
+  <div class="assets-table-cell-action text-end">
+    <app-small-button title="Usuń grupę aktywów" icon="bi-trash3" (buttonClicked)="deleteAssetsContainer()"></app-small-button>
+  </div>
+  <div class='assets-table-cell-margin'></div>
+</div>
+<ng-container *ngIf="!assetsContainer.isCollapsed">
+  <div class="assets-table-row"
+    *ngFor="let asset of assetsContainer.assets"
+    app-assets-table-asset-row
+    [wallet]="wallet"
+    [asset]="asset">
+  </div>
+</ng-container>

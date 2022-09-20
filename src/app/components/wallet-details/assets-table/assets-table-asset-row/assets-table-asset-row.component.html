@@ -1,0 +1,42 @@
+<div class='assets-table-cell-margin'></div>
+<div class="assets-table-cell-collapse"></div>
+<div class='assets-table-cell f-2 text-start'>
+  <app-text-field [value]="asset.name" (save)="asset.name = $event; saveWallet()"></app-text-field>
+</div>
+<div class="assets-table-cell-action"></div>
+<div class='assets-table-cell text-end'>
+  <app-currency-field [value]="asset.moneySpent" [currency]="wallet.currency" (save)="asset.moneySpent = $event; saveWallet();"></app-currency-field>
+</div>
+<div class='assets-table-cell text-end'>
+  <app-number-field [value]="asset.count" (save)="asset.count = $event; saveWallet();"></app-number-field>
+</div>
+<div class='assets-table-cell text-end'>
+  <app-currency-field [value]="asset.currentValuePerUnit" [currency]="wallet.currency" (save)="asset.currentValuePerUnit = $event; saveWallet();"></app-currency-field>
+</div>
+<div class='assets-table-cell text-end'>
+  {{asset.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}}
+</div>
+<div class='assets-table-cell text-end'>
+  {{asset.profit | currency : wallet.currency : 'symbol-narrow'}}
+</div>
+<div class='assets-table-cell text-end'>
+  {{asset.percentageProfit | percent}}
+</div>
+<div class='assets-table-cell text-end'>
+  <span class="ms-2 fst-italic text-black-50">{{asset.containerRatio | percent}}</span> {{asset.walletRatio | percent}}
+</div>
+<div class='assets-table-cell text-end bg-primary bg-opacity-10'>
+  <app-number-field [value]="asset.modelRatio" (save)="asset.modelRatio = $event; saveWallet();" [isPercent]="true"></app-number-field>
+</div>
+<div class='assets-table-cell text-end bg-primary bg-opacity-10'>
+  <span *ngIf="asset.walletRatio! > asset.modelRatio! && (asset.walletRatio! - asset.modelRatio!) * wallet.currentTotalValue! > 500">
+    Sprzedaj za {{(asset.walletRatio! - asset.modelRatio!) * wallet.currentTotalValue! | currency : wallet.currency : 'symbol-narrow'}}
+  </span>
+  <span *ngIf="asset.walletRatio! < asset.modelRatio! && (asset.modelRatio! - asset.walletRatio!) * wallet.currentTotalValue! > 500">
+    Kup za {{(asset.modelRatio! - asset.walletRatio!) * wallet.currentTotalValue! | currency : wallet.currency : 'symbol-narrow'}}
+  </span>
+</div>
+<div class="assets-table-cell-action text-end">
+  <app-small-button title="Usuń grupę aktywów" icon="bi-trash3" (buttonClicked)="deleteAsset()"></app-small-button>
+</div>
+<div class='assets-table-cell-margin'></div>

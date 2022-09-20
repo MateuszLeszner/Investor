@@ -15,16 +15,16 @@ export class UtilsService {
       this.fillAssetsContainerData(container);
     });
 
-    wallet.assets!.forEach(asset => this.fillAssetData(asset));
+    // wallet.assets!.forEach(asset => this.fillAssetData(asset));
 
-    const containersTotalMoneySpent = wallet.assetsContainers!.map(container => container.totalMoneySpent!).reduce((a, b) => (Number(a) + Number(b)), 0);
-    wallet.totalMoneySpent = this.getTotalMoneySpent(wallet.assets!) + containersTotalMoneySpent;
+    wallet.totalMoneySpent = wallet.assetsContainers!.map(container => container.totalMoneySpent!).reduce((a, b) => (Number(a) + Number(b)), 0);
+    // wallet.totalMoneySpent = this.getTotalMoneySpent(wallet.assets!) + containersTotalMoneySpent;
 
-    const containersCurrentTotalValue = wallet.assetsContainers!.map(container => container.currentTotalValue!).reduce((a, b) => (Number(a) + Number(b)), 0);
-    wallet.currentTotalValue = this.getCurrentTotalValue(wallet.assets!) + containersCurrentTotalValue;
+    wallet.currentTotalValue = wallet.assetsContainers!.map(container => container.currentTotalValue!).reduce((a, b) => (Number(a) + Number(b)), 0);
+    // wallet.currentTotalValue = this.getCurrentTotalValue(wallet.assets!) + containersCurrentTotalValue;
 
-    const containersTotalProfit = wallet.assetsContainers!.map(container => container.totalProfit!).reduce((a, b) => (Number(a) + Number(b)), 0);
-    wallet.totalProfit = this.getTotalProfit(wallet.assets!) + containersTotalProfit;
+    wallet.totalProfit = wallet.assetsContainers!.map(container => container.totalProfit!).reduce((a, b) => (Number(a) + Number(b)), 0);
+    // wallet.totalProfit = this.getTotalProfit(wallet.assets!) + containersTotalProfit;
 
     wallet.totalPercentageProfit = wallet.totalProfit / wallet.totalMoneySpent;
 
@@ -61,10 +61,10 @@ export class UtilsService {
   private fillWalletRatios(wallet: Wallet): void {
     wallet.totalWalletRatio = 0;
 
-    wallet.assets.forEach(asset => {
-      asset.walletRatio = asset.currentTotalValue! / wallet.currentTotalValue!;
-      wallet.totalWalletRatio! += asset.modelRatio;
-    });
+    // wallet.assets.forEach(asset => {
+    //   asset.walletRatio = asset.currentTotalValue! / wallet.currentTotalValue!;
+    //   wallet.totalWalletRatio! += asset.modelRatio;
+    // });
 
     wallet.assetsContainers?.forEach(container => {
       this.fillAssetsContainerRatio(container, wallet.currentTotalValue!);

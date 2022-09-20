@@ -1,0 +1,15 @@
+<nav>
+  <div class="sidebar">
+    <app-wallets-list></app-wallets-list>
+    <div>
+      <button class="btn btn-outline-info" (click)="downloadBackup()">
+        <i class="bi bi-box-arrow-down"></i>
+      </button>
+      <input style="display: none" type="file" class="file-input" (change)="uploadBackup($event)" #fileUpload>
+      <button class="btn btn-outline-warning" (click)="fileUpload.click();">
+        <i class="bi bi-paperclip"></i>
+        <i class="bi bi-box-arrow-up"></i>
+      </button>
+    </div>
+  </div>
+</nav>

@@ -16,6 +16,8 @@ export class AssetsContainer {
     public totalPercentageProfit?: number;
     public walletRatio?: number;
 
+    public isCollapsed: boolean = false;
+
     constructor(name: string) {
         this.id = uuidv4();
         this.name = name;
