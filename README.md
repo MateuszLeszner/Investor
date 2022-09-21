@@ -1,6 +1,8 @@
 # Investor
 An Angular application to follow your investments.
 
+You can see it at work on https://mateuszleszner.github.io/Investor/
+
 ## Storage
 All data are stored locally in your webbrowser memory in IndexedDB.
 
