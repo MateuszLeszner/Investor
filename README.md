@@ -1,6 +1,13 @@
-# Inwestycje.Web
+# Investor
+An Angular application to follow your investments.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
+## Storage
+All data are stored locally in your webbrowser memory in IndexedDB.
+
+---
+# Angular info
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1. Angular version 14.2.0. Built with Node version 16.13.2.
 
 ## Development server
 
