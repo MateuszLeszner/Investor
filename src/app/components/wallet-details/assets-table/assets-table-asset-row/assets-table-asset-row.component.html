@@ -8,8 +8,8 @@
   <app-currency-field [value]="asset.moneySpent" [currency]="wallet.currency" (save)="asset.moneySpent = $event; saveWallet();"></app-currency-field>
 </div>
 <div class='assets-table-cell text-end'>
-  <app-small-button class="me-2" [title]="'Kup więcej ' + asset.name" icon="bi-plus" (buttonClicked)="isSellVisible = false;isBuyVisible = true;"></app-small-button>
-  <app-small-button *ngIf="asset.count > 0" class="me-2" [title]="'Sprzedaj ' + asset.name" icon="bi-dash" (buttonClicked)="isBuyVisible = false;isSellVisible = true;"></app-small-button>
+  <app-small-button style="display: none" class="me-2" [title]="'Kup więcej ' + asset.name" icon="bi-plus" (buttonClicked)="isSellVisible = false;isBuyVisible = true;"></app-small-button>
+  <app-small-button style="display: none" *ngIf="asset.count > 0" class="me-2" [title]="'Sprzedaj ' + asset.name" icon="bi-dash" (buttonClicked)="isBuyVisible = false;isSellVisible = true;"></app-small-button>
   <app-number-field [value]="asset.count" (save)="asset.count = $event; saveWallet();"></app-number-field>
 </div>
 <div class='assets-table-cell text-end'>
