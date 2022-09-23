@@ -1,19 +1,19 @@
 <div class="assets-table-row">
   <div class="assets-table-cell-margin"></div>
   <div class="assets-table-cell-collapse"></div>
-  <div class="assets-table-cell f-2 text-end">Razem:</div>
+  <div class="assets-table-cell f-3 text-end">Razem:</div>
   <div class="assets-table-cell-action"></div>
-  <div class="assets-table-cell text-end">{{wallet.totalMoneySpent | currency : wallet.currency : 'symbol-narrow'}}</div>
-  <div class="assets-table-cell"></div>
-  <div class="assets-table-cell"></div>
-  <div class="assets-table-cell text-end">{{wallet.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}}</div>
-  <div class="assets-table-cell text-end">{{wallet.totalProfit | currency : wallet.currency : 'symbol-narrow'}}</div>
+  <div class="assets-table-cell f-2 text-end">{{wallet.totalMoneySpent | currency : wallet.currency : 'symbol-narrow'}}</div>
+  <div class="assets-table-cell f-2"></div>
+  <div class="assets-table-cell f-2"></div>
+  <div class="assets-table-cell f-2 text-end">{{wallet.currentTotalValue | currency : wallet.currency : 'symbol-narrow'}}</div>
+  <div class="assets-table-cell f-2 text-end">{{wallet.totalProfit | currency : wallet.currency : 'symbol-narrow'}}</div>
   <div class="assets-table-cell text-end">{{wallet.totalPercentageProfit | percent}}</div>
   <div class="assets-table-cell"></div>
   <div class="assets-table-cell text-end bg-primary bg-opacity-10" [ngClass]="wallet.totalWalletRatio !== 1 ? 'text-danger': ''">
     {{wallet.totalWalletRatio | percent}}
   </div>
-  <div class="assets-table-cell bg-primary bg-opacity-10"></div>
+  <div class="assets-table-cell f-2 bg-primary bg-opacity-10"></div>
   <div class="assets-table-cell-action"></div>
   <div class="assets-table-cell-margin"></div>
 </div>
