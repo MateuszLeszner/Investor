@@ -1,7 +1,12 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { WalletsListComponent } from './components/wallets-list/wallets-list.component';
 import { WalletsListItemComponent } from './components/wallets-list/wallets-list-item/wallets-list-item.component';
@@ -24,6 +29,11 @@ import { AssetsTableAssetRowComponent } from './components/wallet-details/assets
 import { AssetsTableCollapseButtonComponent } from './components/wallet-details/assets-table/assets-table-collapse-button/assets-table-collapse-button.component';
 import { SmallButtonComponent } from './components/_shared/small-button/small-button.component';
 import { AssetsBuySellComponent } from './components/wallet-details/assets-table/assets-buy-sell/assets-buy-sell.component';
+import { AuthService } from './services/auth.service';
+import { SignInComponent } from './components/auth/sign-in/sign-in.component';
+import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 
 registerLocaleData(localePL);
 
@@ -46,16 +56,26 @@ registerLocaleData(localePL);
     AssetsTableAssetRowComponent,
     AssetsTableCollapseButtonComponent,
     SmallButtonComponent,
-    AssetsBuySellComponent
+    AssetsBuySellComponent,
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     NgSelectModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'pl'}
+    {provide: LOCALE_ID, useValue: 'pl'},
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
